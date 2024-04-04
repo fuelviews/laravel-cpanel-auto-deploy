@@ -1,6 +1,9 @@
 name: "Update Changelog"
 
 on:
+  push:
+    tags:
+      - '*'
   release:
 
 permissions:
