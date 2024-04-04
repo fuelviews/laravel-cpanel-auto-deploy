@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.merge_commit_sha }}
+          ref: 'main'
           fetch-depth: '0'
 
       - name: Bump version and push tag
@@ -36,5 +36,5 @@ jobs:
         with:
           tag_name: ${{ steps.bump_version.outputs.new_tag }}
           release_name: ${{ steps.bump_version.outputs.new_tag }}
-          draft: true
+          draft: false
           prerelease: false
