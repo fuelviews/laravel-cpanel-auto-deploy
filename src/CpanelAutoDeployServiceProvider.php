@@ -2,9 +2,9 @@
 
 namespace Fuelviews\CpanelAutoDeploy;
 
+use Fuelviews\CpanelAutoDeploy\Commands\CpanelAutoDeployCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Fuelviews\CpanelAutoDeploy\Commands\CpanelAutoDeployCommand;
 
 class CpanelAutoDeployServiceProvider extends PackageServiceProvider
 {

@@ -2,9 +2,9 @@
 
 namespace Fuelviews\CpanelAutoDeploy\Tests;
 
+use Fuelviews\CpanelAutoDeploy\CpanelAutoDeployServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Fuelviews\CpanelAutoDeploy\CpanelAutoDeployServiceProvider;
 
 class TestCase extends Orchestra
 {
