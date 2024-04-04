@@ -41,5 +41,5 @@ jobs:
 
             ${{ github.event.pull_request.title }}
             ${{ github.event.pull_request.body }}
-          draft: false
+          draft: true
           prerelease: false
