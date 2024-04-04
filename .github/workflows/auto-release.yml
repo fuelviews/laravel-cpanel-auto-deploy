@@ -36,10 +36,5 @@ jobs:
         with:
           tag_name: ${{ steps.bump_version.outputs.new_tag }}
           release_name: Release ${{ steps.bump_version.outputs.new_tag }}
-          body: |
-            Changes in this Release:
-
-            ${{ github.event.pull_request.title }}
-            ${{ github.event.pull_request.body }}
           draft: true
           prerelease: false
