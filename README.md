@@ -1,4 +1,4 @@
-# Fuelviews cpanel auto deploy package.
+# Laravel cpanel auto deploy package.
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/fuelviews/laravel-cpanel-auto-deploy.svg?style=flat-square)](https://packagist.org/packages/fuelviews/laravel-cpanel-auto-deploy)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/fuelviews/laravel-cpanel-auto-deploy/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/fuelviews/laravel-cpanel-auto-deploy/actions?query=workflow%3Arun-tests+branch%3Amain)
@@ -7,60 +7,23 @@
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-cpanel-auto-deploy.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-cpanel-auto-deploy)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
-
 ## Installation
 
-You can install the package via composer:
+You can require the package and it's dependencies via composer:
 
 ```bash
 composer require fuelviews/laravel-cpanel-auto-deploy
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="laravel-cpanel-auto-deploy-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="laravel-cpanel-auto-deploy-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="laravel-cpanel-auto-deploy-views"
-```
-
 ## Usage
 
-```php
-$cpanelAutoDeploy = new Fuelviews\CpanelAutoDeploy();
-echo $cpanelAutoDeploy->echoPhrase('Hello, Fuelviews!');
-```
-
-## Testing
+You can manually run the script in a terminal with:
 
 ```bash
-composer test
+./cpanel-auto-deploy.sh
 ```
+
+You will likely
 
 ## Changelog
 
@@ -76,8 +39,13 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Joshua Mitchener](https://github.com/thejmitchener)
+- [Thejmitchener](https://github.com/thejmitchener)
+- [Fuelviews](https://github.com/fuelviews)
 - [All Contributors](../../contributors)
+
+## Support us
+
+Fuelviews is a web development agency based in Portland, Maine. You'll find an overview of all our projects [on our website](https://fuelviews.com).
 
 ## License
 
