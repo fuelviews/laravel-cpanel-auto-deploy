@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-cpanel-auto-deploy` will be documented in this file.
 
+## v0.1.0 - 2024-04-04
+
+### What's Changed
+
+* Files Sync From fuelviews/github-workflow-sync by @thejmitchener in https://github.com/fuelviews/laravel-cpanel-auto-deploy/pull/6
+
+**Full Changelog**: https://github.com/fuelviews/laravel-cpanel-auto-deploy/compare/v0.0.4...v0.1.0
+
 ## v0.0.4 - 2024-04-04
 
 ### What's Changed
