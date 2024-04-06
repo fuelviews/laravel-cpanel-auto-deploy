@@ -36,5 +36,5 @@ jobs:
         with:
           tag_name: ${{ steps.bump_version.outputs.new_tag }}
           release_name: ${{ steps.bump_version.outputs.new_tag }}
-          draft: true
+          draft: false
           prerelease: false
