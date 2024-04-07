@@ -7,24 +7,13 @@ echo "Deployment started..."
 # if already is in maintenance mode
 (php artisan down) || true
 
+git fetch origin --force || true
+
+# Grabbing the current branch name
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+
 # Reset to git head commit
-git reset --hard HEAD
-
-# Fetch the latest version of the app
-git fetch origin --force
-
-# Check for untracked files and directories, then delete them
-if [[ -n $(git clean -n) ]]; then
-    git clean -fd
-fi
-
-# Stash changes only if there are modifications to tracked files, immediately drop stash
-if [[ -n $(git diff --name-only) ]]; then
-    git stash && git stash drop
-fi
-
-# Pull the latest version of the app
-git pull --no-rebase --prune --force
+git reset --hard origin/"$current_branch"
 
 # Install composer dependencies
 composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
