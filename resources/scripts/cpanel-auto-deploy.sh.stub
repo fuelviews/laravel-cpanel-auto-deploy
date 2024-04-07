@@ -44,7 +44,7 @@ php artisan migrate --force
 # Exit maintenance mode
 php artisan up
 
-php artisan media-library:clear --force
+php artisan media-library:clean --force
 
 php artisan cloudflare-cache:clear
 
