@@ -32,9 +32,7 @@ composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
 # Clear the old cache
 php artisan clear-compiled
 
-php artisan cloudflar-media:regenerate --only-missing
-
-php artisan media-library:clear
+php artisan media-library:regenerate --only-missing
 
 # Recreate cache
 php artisan optimize
@@ -56,6 +54,8 @@ php artisan migrate --force
 
 # Exit maintenance mode
 php artisan up
+
+php artisan media-library:clear
 
 php artisan cloudflare-cache:clear
 
