@@ -1,0 +1,38 @@
+name: "cPanel Auto Deploy"
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - development
+    paths-ignore:
+      - 'CHANGELOG.md'
+
+jobs:
+  deploy-development:
+    if: github.ref == 'refs/heads/development' || (github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'development')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to Development Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEVELOPMENT_HOST }}
+          username: ${{ secrets.DEVELOPMENT_USERNAME }}
+          port: ${{ secrets.DEVELOPMENT_PORT }}
+          key: ${{ secrets.DEVELOPMENT_SSH_KEY }}
+          script: "cd $HOME/app && /bin/chmod +x ./cpanel-auto-deploy.sh && ./cpanel-auto-deploy.sh"
+
+  deploy-production:
+    if: github.ref == 'refs/heads/main' || (github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to Production Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PRODUCTION_HOST }}
+          username: ${{ secrets.PRODUCTION_USERNAME }}
+          port: ${{ secrets.PRODUCTION_PORT }}
+          key: ${{ secrets.PRODUCTION_SSH_KEY }}
+          script: "cd $HOME/app && /bin/chmod +x ./cpanel-auto-deploy.sh && ./cpanel-auto-deploy.sh"
