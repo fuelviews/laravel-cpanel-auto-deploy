@@ -1,7 +1,6 @@
 name: Auto Tag and Release
 
 on:
-  push:
   pull_request:
     types: [closed]
     branches:
@@ -16,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 'main'
+          ref: 'development'
           fetch-depth: '0'
 
       - name: Bump version and push tag
@@ -26,15 +25,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
           WITH_V: true
-          RELEASE_BRANCHES: main
+          RELEASE_BRANCHES: development
 
-      - name: Create GitHub Release
-        if: steps.bump_version.outputs.new_tag
-        uses: actions/create-release@v1
+      - name: Release
+        id: release
+        uses: softprops/action-gh-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GHA_PERSONAL_ACCESS_TOKEN }}
         with:
           tag_name: ${{ steps.bump_version.outputs.new_tag }}
-          release_name: ${{ steps.bump_version.outputs.new_tag }}
-          draft: true
-          prerelease: false
+          generate_release_notes: true
