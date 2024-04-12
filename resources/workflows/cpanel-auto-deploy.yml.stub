@@ -10,7 +10,7 @@ on:
 
 jobs:
   deploy-development:
-    if: github.ref == 'refs/heads/development' || (github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'development')
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'development'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
           script: "cd $HOME/app && /bin/chmod +x ./cpanel-auto-deploy.sh && ./cpanel-auto-deploy.sh"
 
   deploy-production:
-    if: github.ref == 'refs/heads/main' || (github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main')
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
