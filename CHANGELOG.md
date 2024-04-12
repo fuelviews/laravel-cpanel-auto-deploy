@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-cpanel-auto-deploy` will be documented in this file.
 
+## v.0.0.3 - 2024-04-12
+
+**Full Changelog**: https://github.com/fuelviews/laravel-cpanel-auto-deploy/compare/v0.0.2...v.0.0.3
+
 ## v0.0.2 - 2024-04-07
 
 ### What's Changed
