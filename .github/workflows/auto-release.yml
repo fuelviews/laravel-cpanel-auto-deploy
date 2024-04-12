@@ -25,7 +25,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
           WITH_V: true
-          RELEASE_BRANCHES: development
+          RELEASE_BRANCHES: main
 
       - name: Release
         id: release
