@@ -1,10 +1,14 @@
 name: "cPanel Auto Deploy"
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     types: [closed]
     branches:
       - development
+      - main
     paths-ignore:
       - 'CHANGELOG.md'
 
@@ -24,7 +28,7 @@ jobs:
           script: "cd $HOME/app && /bin/chmod +x ./cpanel-auto-deploy.sh && ./cpanel-auto-deploy.sh"
 
   deploy-production:
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'))
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
