@@ -2,6 +2,16 @@
 
 All notable changes to `laravel-cpanel-auto-deploy` will be documented in this file.
 
+## v0.0.5 - 2024-06-05
+
+### What's Changed
+
+* Bump anothrNick/github-tag-action from 1.67.0 to 1.69.0 by @dependabot in https://github.com/fuelviews/laravel-cpanel-auto-deploy/pull/12
+* Bump aglipanci/laravel-pint-action from 2.3.1 to 2.4 by @dependabot in https://github.com/fuelviews/laravel-cpanel-auto-deploy/pull/15
+* Update stub and readme, composer and deps by @thejmitchener in https://github.com/fuelviews/laravel-cpanel-auto-deploy/pull/16
+
+**Full Changelog**: https://github.com/fuelviews/laravel-cpanel-auto-deploy/compare/v0.0.4...v0.0.5
+
 ## v0.0.4 - 2024-04-12
 
 ### What's Changed
