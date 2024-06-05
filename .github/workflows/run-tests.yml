@@ -8,6 +8,9 @@ on:
       - 'phpunit.xml.dist'
       - 'composer.json'
       - 'composer.lock'
+  pull_request_target:
+    branches:
+      - main
 
 jobs:
   test:
@@ -41,6 +44,13 @@ jobs:
         run: |
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - name: Configure GitHub Token
+        env:
+          GH_TOKEN: ${{ secrets.GHA_PERSONAL_ACCESS_TOKEN }}
+        run: |
+          git config --global url."https://${GH_TOKEN}@github.com/".insteadOf "https://github.com/"
+          git config --global url."https://${GH_TOKEN}@github.com/".insteadOf "git@github.com:"
 
       - name: Install dependencies
         run: |
