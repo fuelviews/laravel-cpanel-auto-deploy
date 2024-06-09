@@ -9,7 +9,6 @@ class InstallWorkflowCommand extends Command
 {
     protected $signature = 'deploy:install';
 
-
     protected $description = 'Install all Fuelviews packages and run their install commands';
 
     public function __construct()
