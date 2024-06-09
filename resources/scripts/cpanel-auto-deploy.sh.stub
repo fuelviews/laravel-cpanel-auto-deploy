@@ -9,11 +9,7 @@ echo "Deployment started..."
 
 git fetch origin --force || true
 
-# Grabbing the current branch name
-current_branch=$(git rev-parse --abbrev-ref HEAD)
-
-# Reset to git head commit
-git reset --hard origin/"$current_branch"
+git reset --hard "@{u}"
 
 # Install composer dependencies
 composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
@@ -28,14 +24,14 @@ php artisan optimize
 
 # Check if npm is available
 if command -v npm >/dev/null 2>&1; then
+    # Remove node_modules directory
+    rm -rf ./node_modules
+
     # Install npm dependencies
     npm install
 
     # Compile npm assets
     npm run build
-
-    # Remove node_modules directory
-    rm -rf ./node_modules
 fi
 
 # Run database migrations
