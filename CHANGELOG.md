@@ -2,6 +2,22 @@
 
 All notable changes to `laravel-cpanel-auto-deploy` will be documented in this file.
 
+## v0.0.8 - 2024-06-09
+
+### What's Changed
+
+* Fix command by @thejmitchener in https://github.com/fuelviews/laravel-cpanel-auto-deploy/pull/19
+
+**Full Changelog**: https://github.com/fuelviews/laravel-cpanel-auto-deploy/compare/v0.0.7...v0.0.8
+
+## v0.0.7 - 2024-06-09
+
+### What's Changed
+
+* Add InstallWorkflowCommand.php to the project, which allows for the installation of Fuelviews packages and running their install commands. The command copies a workflow file from a stub to the desired destination, creating any necessary directories along the way. by @thejmitchener in https://github.com/fuelviews/laravel-cpanel-auto-deploy/pull/18
+
+**Full Changelog**: https://github.com/fuelviews/laravel-cpanel-auto-deploy/compare/v0.0.6...v0.0.7
+
 ## v0.0.6 - 2024-06-09
 
 ### What's Changed
