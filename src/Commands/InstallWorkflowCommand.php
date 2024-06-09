@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\File;
 
 class InstallWorkflowCommand extends Command
 {
-    protected $signature = 'laravel-cpanel-auto-deploy:install';
-
+    protected $signature = 'deploy:install';
     protected $description = 'Install all Fuelviews packages and run their install commands';
 
     public function __construct()
@@ -18,12 +17,21 @@ class InstallWorkflowCommand extends Command
 
     public function handle()
     {
-        $source = resource_path('workflows/cpanel-auto-deploy.yml.stub');
+        // Adjust the source path to be relative to the package's base directory
+        $source = __DIR__ . '/../../resources/workflows/cpanel-auto-deploy.yml.stub';
         $destination = base_path('.github/workflows/cpanel-auto-deploy.yml');
+
+        // Check if source file exists
+        if (! File::exists($source)) {
+            $this->error('Source file does not exist: ' . $source);
+            return 1;
+        }
 
         $directory = dirname($destination);
         if (! File::exists($directory)) {
-            File::makeDirectory($directory);
+            if (! File::makeDirectory($directory, 0755, true)) {
+                $this->error('Failed to create directories: ' . $directory);
+            }
         }
 
         if (File::copy($source, $destination)) {
