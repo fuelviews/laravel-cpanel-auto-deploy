@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\File;
 
 class InstallWorkflowCommand extends Command
 {
-    protected $signature = 'deploy:install';
+    protected $signature = 'laravel-cpanel-auto-deploy:install';
 
     protected $description = 'Install all Fuelviews packages and run their install commands';
 
