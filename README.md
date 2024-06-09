@@ -15,7 +15,7 @@ You can require the package and it's dependencies via composer:
 composer require fuelviews/laravel-cpanel-auto-deploy
 ```
 
-You can copy the default github action workflow from :
+You can copy the default github action workflow from:
 
 ```bash
 resources/workfllows/cpanel-auto-deploy.yml into .github/workflows/cpanel-auto-deploy.yml
