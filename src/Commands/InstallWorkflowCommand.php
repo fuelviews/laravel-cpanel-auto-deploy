@@ -4,14 +4,11 @@ namespace Fuelviews\CpanelAutoDeploy\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Process;
-
-use function Laravel\Prompts\confirm;
 
 class InstallWorkflowCommand extends Command
 {
     protected $signature = 'deploy:install';
+
     protected $description = 'Install all Fuelviews packages and run their install commands';
 
     public function __construct()
@@ -25,7 +22,7 @@ class InstallWorkflowCommand extends Command
         $destination = base_path('.github/workflows/cpanel-auto-deploy.yml');
 
         $directory = dirname($destination);
-        if (!File::exists($directory)) {
+        if (! File::exists($directory)) {
             File::makeDirectory($directory);
         }
 
