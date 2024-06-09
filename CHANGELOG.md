@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-cpanel-auto-deploy` will be documented in this file.
 
+## v0.0.6 - 2024-06-09
+
+### What's Changed
+
+* Refactor GitHub action workflow and update cpanel-auto-deploy script to improve deployment process and remove unnecessary steps. by @thejmitchener in https://github.com/fuelviews/laravel-cpanel-auto-deploy/pull/17
+
+**Full Changelog**: https://github.com/fuelviews/laravel-cpanel-auto-deploy/compare/v0.0.5...v0.0.6
+
 ## v0.0.5 - 2024-06-05
 
 ### What's Changed
