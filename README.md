@@ -2,10 +2,10 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/fuelviews/laravel-cpanel-auto-deploy.svg?style=flat-square)](https://packagist.org/packages/fuelviews/laravel-cpanel-auto-deploy)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/fuelviews/laravel-cpanel-auto-deploy/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/fuelviews/laravel-cpanel-auto-deploy/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/fuelviews/laravel-cpanel-auto-deploy/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/fuelviews/laravel-cpanel-auto-deploy/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/fuelviews/laravel-cpanel-auto-deploy/fix-php-code-style-issues.yml?label=code%20style&style=flat-square)](https://github.com/fuelviews/laravel-cpanel-auto-deploy/actions?query=workflow%3A"Fix+PHP+code+style+issues")
 [![Total Downloads](https://img.shields.io/packagist/dt/fuelviews/laravel-cpanel-auto-deploy.svg?style=flat-square)](https://packagist.org/packages/fuelviews/laravel-cpanel-auto-deploy)
 
-Laravel cpanel auto deploy package streamlines the deployment process for laravel applications on dedicated whm/cpanel hosting environments.
+Laravel cpanel auto deploy package streamlines the deployment process for Laravel applications on dedicated whm/cpanel hosting environments.
 
 ## Installation
 
@@ -15,10 +15,10 @@ You can require the package and it's dependencies via composer:
 composer require fuelviews/laravel-cpanel-auto-deploy
 ```
 
-You can copy the default github action workflow from:
+You can publish the default github action workflow with:
 
 ```bash
-resources/workfllows/cpanel-auto-deploy.yml into .github/workflows/cpanel-auto-deploy.yml
+php artisan deploy:install
 ```
 
 **Default github action workflow triggers on PR to development branch

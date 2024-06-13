@@ -9,14 +9,9 @@ class InstallWorkflowCommand extends Command
 {
     protected $signature = 'deploy:install';
 
-    protected $description = 'Install all Fuelviews packages and run their install commands';
+    protected $description = 'Install github workflow file';
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    public function handle()
+    public function handle(): bool
     {
         // Adjust the source path to be relative to the package's base directory
         $source = __DIR__.'/../../resources/workflows/cpanel-auto-deploy.yml.stub';
@@ -30,6 +25,7 @@ class InstallWorkflowCommand extends Command
         }
 
         $directory = dirname($destination);
+
         if (! File::exists($directory)) {
             if (! File::makeDirectory($directory, 0755, true)) {
                 $this->error('Failed to create directories: '.$directory);
@@ -40,6 +36,10 @@ class InstallWorkflowCommand extends Command
             $this->info('Workflow file copied successfully.');
         } else {
             $this->error('Failed to copy workflow file.');
+
+            return false;
         }
+
+        return true;
     }
 }
