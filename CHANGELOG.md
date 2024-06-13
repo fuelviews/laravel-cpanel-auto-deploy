@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-cpanel-auto-deploy` will be documented in this file.
 
+## v0.0.10 - 2024-06-13
+
+### What's Changed
+
+* Refactored .gitignore, added Laravel cpanel auto deploy package, and installed github workflow file. by @thejmitchener in https://github.com/fuelviews/laravel-cpanel-auto-deploy/pull/21
+
+**Full Changelog**: https://github.com/fuelviews/laravel-cpanel-auto-deploy/compare/v0.0.9...v0.0.10
+
 ## v0.0.9 - 2024-06-09
 
 ### What's Changed
