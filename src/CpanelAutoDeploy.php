@@ -2,6 +2,4 @@
 
 namespace Fuelviews\CpanelAutoDeploy;
 
-class CpanelAutoDeploy
-{
-}
+class CpanelAutoDeploy {}
