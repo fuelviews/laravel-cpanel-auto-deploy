@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Facade;
  */
 class CpanelAutoDeploy extends Facade
 {
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return \Fuelviews\CpanelAutoDeploy\CpanelAutoDeploy::class;
     }
