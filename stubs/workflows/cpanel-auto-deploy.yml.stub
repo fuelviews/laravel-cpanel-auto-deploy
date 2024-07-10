@@ -1,0 +1,74 @@
+name: "cPanel Auto Deploy"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [closed]
+    branches:
+      - development
+      - main
+    paths-ignore:
+      - 'CHANGELOG.md'
+
+jobs:
+  deploy-development:
+    if: ${{ github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'development' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: First Attempt to Deploy to Development Server
+        id: deploy_dev
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEVELOPMENT_HOST }}
+          username: ${{ secrets.DEVELOPMENT_USERNAME }}
+          port: ${{ secrets.DEVELOPMENT_PORT }}
+          key: ${{ secrets.DEVELOPMENT_SSH_KEY }}
+          script: "cd $HOME/app && /bin/chmod +x ./cpanel-auto-deploy.sh && ./cpanel-auto-deploy.sh"
+        continue-on-error: true
+
+      - name: Check Deployment Success
+        if: steps.deploy_dev.outcome == 'failure'
+        run: exit 1
+
+      - name: Second Attempt to Deploy to Development Server
+        if: steps.deploy_dev.outcome == 'failure'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEVELOPMENT_HOST }}
+          username: ${{ secrets.DEVELOPMENT_USERNAME }}
+          port: ${{ secrets.DEVELOPMENT_PORT }}
+          key: ${{ secrets.DEVELOPMENT_SSH_KEY }}
+          script: "cd $HOME/app && /bin/chmod +x ./cpanel-auto-deploy.sh && ./cpanel-auto-deploy.sh"
+
+  deploy-production:
+    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: First Attempt to Deploy to Production Server
+        id: deploy_prod
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PRODUCTION_HOST }}
+          username: ${{ secrets.PRODUCTION_USERNAME }}
+          port: ${{ secrets.PRODUCTION_PORT }}
+          key: ${{ secrets.PRODUCTION_SSH_KEY }}
+          script: "cd $HOME/app && /bin/chmod +x ./cpanel-auto-deploy.sh && ./cpanel-auto-deploy.sh"
+        continue-on-error: true
+
+      - name: Check Deployment Success
+        if: steps.deploy_prod.outcome == 'failure'
+        run: exit 1
+
+      - name: Second Attempt to Deploy to Production Server
+        if: steps.deploy_prod.outcome == 'failure'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PRODUCTION_HOST }}
+          username: ${{ secrets.PRODUCTION_USERNAME }}
+          port: ${{ secrets.PRODUCTION_PORT }}
+          key: ${{ secrets.PRODUCTION_SSH_KEY }}
+          script: "cd $HOME/app && /bin/chmod +x ./cpanel-auto-deploy.sh && ./cpanel-auto-deploy.sh"

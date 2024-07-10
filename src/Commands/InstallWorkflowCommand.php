@@ -14,7 +14,7 @@ class InstallWorkflowCommand extends Command
     public function handle(): bool
     {
         // Adjust the source path to be relative to the package's base directory
-        $source = __DIR__.'/../../resources/workflows/cpanel-auto-deploy.yml.stub';
+        $source = __DIR__.'/../../stubs/workflows/cpanel-auto-deploy.yml.stub';
         $destination = base_path('.github/workflows/cpanel-auto-deploy.yml');
 
         // Check if source file exists
