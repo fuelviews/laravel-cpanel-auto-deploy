@@ -14,14 +14,6 @@ git reset --hard "@{u}"
 # Install composer dependencies
 composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
 
-# Clear the old cache
-php artisan clear-compiled
-
-php artisan media-library:regenerate --only-missing --force
-
-# Recreate cache
-php artisan optimize
-
 # Check if npm is available
 if command -v npm >/dev/null 2>&1; then
     # Remove node_modules directory
@@ -40,8 +32,18 @@ php artisan migrate --force
 # Exit maintenance mode
 php artisan up
 
+# Clear the old cache
+php artisan clear-compiled
+
+php artisan media-library:regenerate --only-missing --force
+
 php artisan media-library:clean --force
 
 php artisan cloudflare-cache:clear
+
+php artisan glide:clear
+
+# Recreate cache
+php artisan optimize
 
 echo "Deployment finished!"
