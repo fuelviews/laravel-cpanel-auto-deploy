@@ -24,7 +24,7 @@ class CpanelAutoDeployServiceProvider extends PackageServiceProvider
 
     protected function publishScriptToRoot(): void
     {
-        $sourcePath = __DIR__ . '/../stubs/scripts/cpanel-auto-deploy.sh.stub';
+        $sourcePath = __DIR__.'/../stubs/scripts/cpanel-auto-deploy.sh.stub';
         $destinationPath = base_path('cpanel-auto-deploy.sh');
 
         copy($sourcePath, $destinationPath);
