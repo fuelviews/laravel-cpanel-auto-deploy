@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-cpanel-auto-deploy` will be documented in this file.
 
+## v0.0.12 - 2024-07-29
+
+### What's Changed
+
+* Update command flow add glide clear by @thejmitchener in https://github.com/fuelviews/laravel-cpanel-auto-deploy/pull/23
+
+**Full Changelog**: https://github.com/fuelviews/laravel-cpanel-auto-deploy/compare/v0.0.11...v0.0.12
+
 ## v0.0.11 - 2024-07-10
 
 ### What's Changed
