@@ -29,19 +29,12 @@ fi
 # Run database migrations
 php artisan migrate --force
 
+php artisan glide:clear
+
 # Exit maintenance mode
 php artisan up
 
-# Clear the old cache
-php artisan clear-compiled
-
-php artisan media-library:regenerate --only-missing --force
-
-php artisan media-library:clean --force
-
 php artisan cloudflare-cache:clear
-
-php artisan glide:clear
 
 # Recreate cache
 php artisan optimize
