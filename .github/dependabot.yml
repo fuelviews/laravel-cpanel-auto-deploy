@@ -4,8 +4,6 @@ updates:
     directory: '/'
     schedule:
       interval: 'monthly'
-    reviewers:
-      - 'thejmitchener'
     target-branch: main
   - package-ecosystem: 'composer'
     directory: '/'
@@ -18,6 +16,4 @@ updates:
     directory: '/'
     schedule:
       interval: 'monthly'
-    reviewers:
-      - 'thejmitchener'
     target-branch: main
