@@ -1,4 +1,4 @@
-name: Autofill PR description
+name: Autofill PR Description
 
 on: pull_request
 
