@@ -5,7 +5,7 @@ on: pull_request
 jobs:
   openai-pr-description:
     runs-on: ubuntu-22.04
-    if: github.actor != 'dependabot[bot]'
+    if: github.actor != 'dependabot[bot]' || github.actor != 'dependabot'
     steps:
       - uses: platisd/openai-pr-description@master
         with:
