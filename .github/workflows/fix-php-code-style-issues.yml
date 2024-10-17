@@ -1,6 +1,8 @@
 name: Fix PHP Code Style Issues
 
 on:
+  workflow_dispatch:
+
   push:
     branches-ignore:
       - main
