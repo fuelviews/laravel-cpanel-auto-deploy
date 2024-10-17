@@ -33,3 +33,5 @@ jobs:
           branch: main
           commit_message: Update CHANGELOG
           file_pattern: CHANGELOG.md
+          commit_user_name: thejmitchener
+          commit_user_email: joshua@fuelviews.com
