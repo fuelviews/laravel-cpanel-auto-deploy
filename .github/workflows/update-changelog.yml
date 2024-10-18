@@ -48,11 +48,11 @@ jobs:
       - name: Amend latest commit with updated CHANGELOG
         run: |
           git add CHANGELOG.md
-          git commit --amend --no-edit  # Amend the last commit with the updated changelog
+          git commit --amend --no-edit
         env:
           GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
 
       - name: Push updated commit
-        run: git push origin main --force-with-lease  # Ensure remote branch isn't rewritten if no conflicts
+        run: git push origin main --force-with-lease
         env:
           GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
