@@ -28,7 +28,11 @@ jobs:
         with:
           ref: 'main'
           fetch-depth: '0'
-          token: ${{ steps.get_workflow_token.outputs.token }}
+
+      - name: Pull latest changes
+        run: gh pull origin main
+        env:
+          GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
 
       - name: Update Changelog
         uses: stefanzweifel/changelog-updater-action@v1
