@@ -16,10 +16,18 @@ jobs:
     timeout-minutes: 10
 
     steps:
+      - name: Get Token
+        id: get_workflow_token
+        uses: peter-murray/workflow-application-token-action@v2
+        with:
+          application_id: ${{ vars.PACKAGE_BOT_ID}}
+          application_private_key: ${{ secrets.PACKAGE_BOT_PRIVATE_KEY }}
+
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           ref: 'main'
+          token: ${{ steps.get_workflow_token.outputs.token }}
 
       - name: Update Changelog
         uses: stefanzweifel/changelog-updater-action@v1
@@ -33,5 +41,4 @@ jobs:
           branch: main
           commit_message: Update CHANGELOG
           file_pattern: CHANGELOG.md
-          commit_user_name: thejmitchener
-          commit_user_email: joshua@fuelviews.com
+          token: ${{ steps.get_workflow_token.outputs.token }}
