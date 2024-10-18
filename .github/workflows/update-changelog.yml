@@ -30,11 +30,6 @@ jobs:
           fetch-depth: '0'
           token: ${{ steps.get_workflow_token.outputs.token }}
 
-      - name: Configure Git with App Identity
-        run: |
-          git config user.name "fuelviews-app[bot]"
-          git config user.email "fuelviews-app[bot]@users.noreply.github.com"
-
       - name: Update Changelog
         uses: stefanzweifel/changelog-updater-action@v1
         with:
@@ -43,12 +38,10 @@ jobs:
 
       - name: Amend latest commit with updated CHANGELOG
         run: |
+          git config user.name "fuelviews-app[bot]"
+          git config user.email "fuelviews-app[bot]@users.noreply.github.com"
           git add CHANGELOG.md
           git commit --amend --no-edit
-        env:
-          GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
-
-      - name: Push updated commit
-        run: git push origin main --force-with-lease
+          git push origin main --force-with-lease
         env:
           GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
