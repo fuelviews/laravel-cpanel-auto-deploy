@@ -34,6 +34,7 @@ jobs:
         with:
           latest-version: ${{ github.event.release.name }}
           release-notes: ${{ github.event.release.body }}
+          token: ${{ steps.get_workflow_token.outputs.token }}
 
       - name: Commit updated CHANGELOG
         uses: stefanzweifel/git-auto-commit-action@v5
