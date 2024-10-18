@@ -30,6 +30,13 @@ jobs:
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
     steps:
+      - name: Get Token
+        id: get_workflow_token
+        uses: peter-murray/workflow-application-token-action@v2
+        with:
+          application_id: ${{ vars.FUELVIEWS_BOT_APP_ID}}
+          application_private_key: ${{ secrets.FUELVIEWS_BOT_APP_PRIVATE_KEY }}
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -47,7 +54,7 @@ jobs:
 
       - name: Configure GitHub Token
         env:
-          GH_TOKEN: ${{ secrets.GHA_PERSONAL_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
         run: |
           git config --global url."https://${GH_TOKEN}@github.com/".insteadOf "https://github.com/"
           git config --global url."https://${GH_TOKEN}@github.com/".insteadOf "git@github.com:"
