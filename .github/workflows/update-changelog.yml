@@ -29,6 +29,11 @@ jobs:
           ref: 'main'
           fetch-depth: '0'
 
+      - name: Configure Git with App Identity
+        run: |
+          git config user.name "fuelviews-app[bot]"
+          git config user.email "fuelviews-app[bot]@users.noreply.github.com"
+
       - name: Pull latest changes
         run: git pull origin main
         env:
