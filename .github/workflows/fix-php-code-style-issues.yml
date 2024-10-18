@@ -3,10 +3,9 @@ name: Fix PHP Code Style Issues
 on:
   workflow_dispatch:
 
-  push:
-    branches-ignore:
+  pull_request:
+    branches:
       - main
-      - development
     paths:
       - '**.php'
 
