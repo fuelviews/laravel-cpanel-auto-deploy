@@ -43,4 +43,5 @@ jobs:
           commit_message: Update CHANGELOG
           file_pattern: CHANGELOG.md
           commit_options: --amend
+          push_options: --force
           token: ${{ steps.get_workflow_token.outputs.token }}
