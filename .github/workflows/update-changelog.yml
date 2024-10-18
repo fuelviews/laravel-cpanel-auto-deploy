@@ -40,10 +40,14 @@ jobs:
           latest-version: ${{ github.event.release.name }}
           release-notes: ${{ github.event.release.body }}
 
-      - name: Commit updated CHANGELOG
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          branch: main
-          commit_message: "Update CHANGELOG for release ${{ github.event.release.name }}"
-          file_pattern: CHANGELOG.md
-          commit_options: --amend
+      - name: Amend latest commit with updated CHANGELOG
+        run: |
+          git add CHANGELOG.md
+          git commit --amend --no-edit  # Amend the last commit with the updated changelog
+        env:
+          GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
+
+      - name: Push updated commit
+        run: git push origin main --force-with-lease  # Ensure remote branch isn't rewritten if no conflicts
+        env:
+          GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
