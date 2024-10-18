@@ -27,6 +27,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: 'main'
+          fetch-depth: '0'
           token: ${{ steps.get_workflow_token.outputs.token }}
 
       - name: Update Changelog
@@ -42,4 +43,5 @@ jobs:
           branch: main
           commit_message: "Update CHANGELOG for release ${{ github.event.release.name }}"
           file_pattern: CHANGELOG.md
+          commit_options: --amend
           token: ${{ steps.get_workflow_token.outputs.token }}
