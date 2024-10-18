@@ -27,6 +27,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: 'main'
+          fetch-depth: '0'
           token: ${{ steps.get_workflow_token.outputs.token }}
 
       - name: Update Changelog
