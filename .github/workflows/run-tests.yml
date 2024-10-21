@@ -33,7 +33,7 @@ jobs:
     steps:
       - name: Get Token
         id: get_workflow_token
-        uses: peter-murray/workflow-application-token-action@v2
+        uses: peter-murray/workflow-application-token-action@v4
         with:
           application_id: ${{ vars.FUELVIEWS_BOT_APP_ID}}
           application_private_key: ${{ secrets.FUELVIEWS_BOT_APP_PRIVATE_KEY }}
