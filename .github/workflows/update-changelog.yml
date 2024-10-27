@@ -6,10 +6,6 @@ on:
   release:
     types: [published]
 
-permissions:
-  pull-requests: write
-  contents: write
-
 jobs:
   update:
     runs-on: ubuntu-latest
