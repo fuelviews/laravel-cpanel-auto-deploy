@@ -19,6 +19,11 @@ jobs:
     if: github.actor == 'dependabot[bot]'
 
     steps:
+      - name: wait-for-checks
+        uses: poseidon/wait-for-status-checks@v0.6.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Checkout the code
         uses: actions/checkout@v4
 
@@ -27,11 +32,6 @@ jobs:
         uses: dependabot/fetch-metadata@v2.2.0
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
-
-      - name: wait-for-checks
-        uses: poseidon/wait-for-status-checks@v0.6.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Auto-merge Dependabot PRs for semver-minor updates
         if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-minor' }}
