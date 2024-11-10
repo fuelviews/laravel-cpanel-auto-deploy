@@ -33,6 +33,9 @@ jobs:
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
 
+      - name: Debug metadata output
+        run: echo "Update type ${{ steps.metadata.outputs.update-type }}"
+
       - name: Auto-merge Dependabot PRs for semver-minor updates
         if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-minor' }}
         run: gh pr merge --auto --squash "$PR_URL"
