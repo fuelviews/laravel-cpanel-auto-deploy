@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
   release:
-    types: [published]
+    types: [released]
 
 permissions:
   contents: write
@@ -25,8 +25,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: 'main'
-          fetch-depth: '0'
+          ref: ${{ github.event.release.target_commitish }}
           token: ${{ steps.get_workflow_token.outputs.token }}
 
       - name: Update Changelog
