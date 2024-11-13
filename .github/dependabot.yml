@@ -9,6 +9,8 @@ updates:
     directory: '/'
     schedule:
       interval: 'weekly'
+    ignore:
+      - dependency-name: "ralphjsmit/laravel-glide"
     target-branch: main
   - package-ecosystem: 'github-actions'
     directory: '/'
