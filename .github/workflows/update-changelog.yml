@@ -1,6 +1,8 @@
-name: "Update Changelog"
+name: Update Changelog
 
 on:
+  workflow_dispatch:
+
   release:
     types: [released]
 
@@ -10,25 +12,34 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
 
     steps:
+      - name: Get Token
+        id: get_workflow_token
+        uses: peter-murray/workflow-application-token-action@v4
+        with:
+          application_id: ${{ vars.FUELVIEWS_BOT_APP_ID }}
+          application_private_key: ${{ secrets.FUELVIEWS_BOT_APP_PRIVATE_KEY }}
+
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           ref: 'main'
+          token: ${{ steps.get_workflow_token.outputs.token }}
 
       - name: Update Changelog
         uses: stefanzweifel/changelog-updater-action@v1
         with:
-          latest-version: ${{ github.event.release.name }}
+          latest-version: ${{ github.event.release.tag_name }}
           release-notes: ${{ github.event.release.body }}
 
       - name: Commit updated CHANGELOG
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          branch: main
-          commit_message: Update CHANGELOG
-          file_pattern: CHANGELOG.md
-          commit_user_name: 'fuelviews-app[bot]'
-          commit_user_email: 'fuelviews-app[bot]@users.noreply.github.com'
+        env:
+          GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
+        run: |
+          git config user.name "fuelviews-app[bot]"
+          git config user.email "fuelviews-app[bot]@users.noreply.github.com"
+          git add CHANGELOG.md
+          git commit -m "Update CHANGELOG for release ${{ github.event.release.tag_name }}"
+          git push origin main
