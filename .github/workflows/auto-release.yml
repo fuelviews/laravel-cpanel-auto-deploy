@@ -42,15 +42,23 @@ jobs:
 
       - name: Generate Release Notes
         id: generate_release_notes
-        uses: actions/generate-release-notes@v1
+        uses: actions/github-script@v6
         with:
-          tag_name: ${{ steps.bump_version.outputs.new_tag }}
+          result-encoding: string
+          script: |
+            const { data } = await github.repos.generateReleaseNotes({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: '${{ steps.bump_version.outputs.new_tag }}',
+              target_commitish: 'main',
+            });
+            return data.body;
 
       - name: Update Changelog
         uses: stefanzweifel/changelog-updater-action@v1
         with:
           latest-version: ${{ steps.bump_version.outputs.new_tag }}
-          release-notes: ${{ steps.generate_release_notes.outputs.notes }}
+          release-notes: ${{ steps.generate_release_notes.outputs.result }}
 
       - name: Commit updated CHANGELOG
         env:
@@ -59,7 +67,7 @@ jobs:
           git config user.name "fuelviews-app[bot]"
           git config user.email "fuelviews-app[bot]@users.noreply.github.com"
           git add CHANGELOG.md
-          git commit -m "Chore: update changelog for ${{ steps.bump_version.outputs.new_tag }}"
+          git commit -m "chore: update changelog for ${{ steps.bump_version.outputs.new_tag }} [skip ci]"
           git push origin main
 
       - name: Release
@@ -69,4 +77,4 @@ jobs:
           GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
         with:
           tag_name: ${{ steps.bump_version.outputs.new_tag }}
-          body: ${{ steps.generate_release_notes.outputs.notes }}
+          body: ${{ steps.generate_release_notes.outputs.result }}
