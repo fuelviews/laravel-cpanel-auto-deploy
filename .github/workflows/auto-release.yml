@@ -46,7 +46,7 @@ jobs:
         with:
           result-encoding: string
           script: |
-            const { data } = await github.repos.generateReleaseNotes({
+            const { data } = await github.request('POST /repos/{owner}/{repo}/releases/generate-notes', {
               owner: context.repo.owner,
               repo: context.repo.repo,
               tag_name: '${{ steps.bump_version.outputs.new_tag }}',
