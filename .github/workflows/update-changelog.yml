@@ -25,7 +25,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          ref: 'main'
+          ref: ${{ github.event.release.tag_name }}
           token: ${{ steps.get_workflow_token.outputs.token }}
 
       - name: Update Changelog
@@ -34,12 +34,12 @@ jobs:
           latest-version: ${{ github.event.release.tag_name }}
           release-notes: ${{ github.event.release.body }}
 
-      - name: Commit updated CHANGELOG
+      - name: Amend Commit with Updated CHANGELOG
         env:
           GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
         run: |
           git config user.name "fuelviews-app[bot]"
           git config user.email "fuelviews-app[bot]@users.noreply.github.com"
           git add CHANGELOG.md
-          git commit -m "Update CHANGELOG for release ${{ github.event.release.tag_name }}"
-          git push origin main
+          git commit --amend --no-edit
+          git push --force-with-lease origin ${{ github.event.release.tag_name }}
