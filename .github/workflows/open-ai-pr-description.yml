@@ -15,7 +15,7 @@ jobs:
   openai-pr-description:
     runs-on: ubuntu-22.04
     # Run the job only if the actor is NOT Dependabot
-    if: ${{ !startsWith(github.actor, 'dependabot') }
+    if: ${{ !startsWith(github.actor, 'dependabot') }}
     steps:
       - uses: platisd/openai-pr-description@master
         with:
