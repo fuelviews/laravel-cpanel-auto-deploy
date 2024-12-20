@@ -40,6 +40,7 @@ jobs:
           WITH_V: true
           RELEASE_BRANCHES: main
           BRANCH_HISTORY: last
+          PRE_RELEASE: 'true'
 
       - name: Generate Release Notes
         id: generate_release_notes
