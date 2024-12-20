@@ -40,7 +40,6 @@ jobs:
           WITH_V: true
           RELEASE_BRANCHES: main
           BRANCH_HISTORY: last
-          PRE_RELEASE: 'true'
 
       - name: Generate Release Notes
         id: generate_release_notes
@@ -78,16 +77,17 @@ jobs:
         with:
           latest-version: ${{ steps.bump_version.outputs.new_tag }}
           release-notes: ${{ steps.generate_release_notes.outputs.body }}
+          path-to-changelog: "CHANGELOG.md"
 
-      - name: Commit updated CHANGELOG
+      - name: Amend updated CHANGELOG
         env:
           GITHUB_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
         run: |
           git config user.name "fuelviews-app[bot]"
           git config user.email "fuelviews-app[bot]@users.noreply.github.com"
           git add CHANGELOG.md
-          git commit -m "Chore: update changelog for ${{ steps.bump_version.outputs.new_tag }} [skip ci]"
-          git push origin main
+          git commit --amend --no-edit
+          git push origin main --force
 
       - name: Release
         id: release
