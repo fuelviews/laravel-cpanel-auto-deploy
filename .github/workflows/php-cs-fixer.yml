@@ -2,7 +2,6 @@ name: Check & Fix Styling
 
 on:
   workflow_dispatch:
-
   pull_request:
     branches:
       - main
@@ -20,10 +19,20 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
+      # Step to set the ARGS depending on whether the .php-cs-fixer.dist.php file exists
+      - name: Set config argument
+        id: set-config
+        run: |
+          if [ -f ./.php-cs-fixer.dist.php ]; then
+            echo "ARGS=--config=.php-cs-fixer.dist.php --allow-risky=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "ARGS=--allow-risky=yes" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Run PHP CS Fixer
         uses: docker://oskarstark/php-cs-fixer-ga
         with:
-          args: --config=.php-cs-fixer.dist.php --allow-risky=yes
+          args: ${{ steps.set-config.outputs.ARGS }}
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
