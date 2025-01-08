@@ -25,8 +25,6 @@ jobs:
         run: |
           if [ -f ./.php-cs-fixer.dist.php ]; then
             echo "ARGS=--config=.php-cs-fixer.dist.php --allow-risky=yes" >> "$GITHUB_OUTPUT"
-          else
-            echo "ARGS=--allow-risky=yes" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Run PHP CS Fixer
