@@ -2,6 +2,17 @@
 
 All notable changes to `laravel-cpanel-auto-deploy` will be documented in this file.
 
+## v0.0.13 - 2025-01-08
+
+### What's Changed
+
+* Bump poseidon/wait-for-status-checks from 0.5.0 to 0.6.0 by @dependabot in https://github.com/fuelviews/laravel-cpanel-auto-deploy/pull/27
+* Bump poseidon/wait-for-status-checks from 0.5.0 to 0.6.0 by @dependabot in https://github.com/fuelviews/laravel-cpanel-auto-deploy/pull/28
+* Bump stefanzweifel/git-auto-commit-action from 4 to 5 by @dependabot in https://github.com/fuelviews/laravel-cpanel-auto-deploy/pull/30
+* Update larastan/larastan requirement from ^2.9 to ^3.0 by @dependabot in https://github.com/fuelviews/laravel-cpanel-auto-deploy/pull/29
+
+**Full Changelog**: https://github.com/fuelviews/laravel-cpanel-auto-deploy/compare/v0.0.12...v0.0.13
+
 ## v0.0.12 - 2024-07-29
 
 ### What's Changed
